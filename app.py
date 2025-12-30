@@ -1,5 +1,9 @@
 import os
 import streamlit as st
+import sys
+import os
+sys.path.append(os.path.dirname(os.path.abspath(__file__)))
+
 
 # Importa funções diretamente do módulo local
 try:
