@@ -3,6 +3,7 @@ import streamlit as st
 import sys
 import os
 sys.path.append(os.path.dirname(os.path.abspath(__file__)))
+from rsc.funcoes import carregar_dados, grafico_histograma, grafico_dispersao
 
 
 # Importa funções diretamente do módulo local
