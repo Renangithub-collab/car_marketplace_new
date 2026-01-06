@@ -26,8 +26,17 @@ st.write("### Visualização inicial dos dados")
 st.dataframe(car_data.head())
 
 if st.checkbox("Mostrar histograma do odômetro"):
-    # Remove outliers para melhorar a visualização
-    df_filtrado = car_data[car_data["odometer"] <= 300000]
+
+    limite = st.slider(
+        "Limite máximo do odômetro",
+        min_value=50000,
+        max_value=500000,
+        value=300000,
+        step=10000
+    )
+
+    # Filtra para remover outliers e melhorar a visualização
+    df_filtrado = car_data[car_data["odometer"] <= limite]
 
     fig = grafico_histograma(df_filtrado, "odometer")
     fig.update_layout(
@@ -36,3 +45,8 @@ if st.checkbox("Mostrar histograma do odômetro"):
     )
 
     st.plotly_chart(fig, use_container_width=True)
+
+    st.caption(
+        "A maioria dos veículos possui odometragem abaixo desse valor. "
+        "Valores muito altos foram filtrados para facilitar a interpretação do histograma."
+    )
