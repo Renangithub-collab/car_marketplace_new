@@ -26,5 +26,13 @@ st.write("### Visualização inicial dos dados")
 st.dataframe(car_data.head())
 
 if st.checkbox("Mostrar histograma do odômetro"):
-    fig = grafico_histograma(car_data, "odometer")
+    # Remove outliers para melhorar a visualização
+    df_filtrado = car_data[car_data["odometer"] <= 300000]
+
+    fig = grafico_histograma(df_filtrado, "odometer")
+    fig.update_layout(
+        xaxis_title="Odômetro (milhas)",
+        yaxis_title="Quantidade de veículos"
+    )
+
     st.plotly_chart(fig, use_container_width=True)
